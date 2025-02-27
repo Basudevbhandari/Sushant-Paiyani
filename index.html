@@ -2,102 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style12.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E- book</title>
+    <title>E-book</title>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Lovers Quarrel', cursive;
             background: url('https://t3.ftcdn.net/jpg/03/44/67/38/360_F_344673825_6fU6IORyipkYpfU1mg2vmxtHxDToUO6Q.jpg') no-repeat center center fixed;
             background-size: cover;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2em 0;
+            padding: 2em 1em;
             line-height: 1.5em;
             position: relative;
+            transition: background 0.5s ease;
+        }
+
+        body.dark-theme {
+            background: #1a1a1a;
         }
 
         .book {
             width: 60vw;
             height: 44vw;
+            max-width: 800px;
+            max-height: 600px;
             perspective: 250vw;
-            display: flex;
-            justify-content: center;
             position: relative;
+            margin: 0 auto;
         }
 
-        .book .pages {
+        .pages {
             width: 100%;
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            backface-visibility: hidden;
             border-radius: 4px;
-            transition: opacity 0.4s 0.2s;
         }
 
         .page {
-            width: 30vw;
-            height: 44vw;
+            width: 50%;
+            height: 100%;
             position: absolute;
             top: 0;
-            transform-origin: 0 0;
-            transition: transform 1.4s;
+            transform-origin: left center;
+            transition: transform 1.4s ease;
             backface-visibility: hidden;
             background-color: #f0f0f0;
             cursor: pointer;
             user-select: none;
             background-image: url(download.jpg);
-            background-size: cover; /* Ensure the image covers the entire page */
-            background-position: center; /* Center the image */
+            background-size: cover;
+            background-position: center;
         }
 
-        /* First Page Text */
+        body.dark-theme .page {
+            background-color: #333;
+            filter: brightness(0.85);
+        }
+
         .first-page-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: #333;
-            font-size: 24px;
+            font-size: clamp(14px, 2vw, 20px);
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px 20px;
+            padding: 10px 15px;
             border-radius: 8px;
+            max-width: 85%;
+            text-align: center;
         }
 
-        /* New Text at the top of the book page */
+        body.dark-theme .first-page-text {
+            color: #ddd;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
         .ebook-collection-text {
             position: absolute;
-            top: 25px; /* Adjusted to be a little down */
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 36px; /* Increased font size */
+            font-size: clamp(20px, 2.5vw, 30px);
             font-weight: bold;
             color: #fff;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             background-color: rgba(0, 0, 0, 0.5);
-            padding: 12px 25px;
+            padding: 8px 15px;
             border-radius: 8px;
-            font-family: 'Georgia', serif; /* New font for better appearance */
+            font-family: 'Georgia', serif;
         }
 
-        /* Author's Name in Footer of Book Page */
+        body.dark-theme .ebook-collection-text {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
         .author-name {
             position: absolute;
             bottom: 10px;
-            right: 20px;
-            font-size: 24px;
+            right: 10px;
+            font-size: clamp(14px, 1.8vw, 20px);
             font-family: 'Cursive', sans-serif;
             color: #ff6347;
             font-weight: bold;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             background-color: rgba(255, 255, 255, 0.6);
-            padding: 10px;
-            border-radius: 8px;
+            padding: 8px 10px;
+            border-radius: 6px;
+        }
+
+        body.dark-theme .author-name {
+            background-color: rgba(0, 0, 0, 0.6);
         }
 
         .page:nth-child(odd) {
@@ -107,20 +134,12 @@
             border-radius: 0 4px 4px 0;
         }
 
-        .page:nth-child(odd):hover {
-            transform: rotateY(-15deg);
-        }
-
         .page:nth-child(even) {
             pointer-events: none;
             transform: rotateY(180deg);
-            transform-origin: 100% 0;
+            transform-origin: right center;
             left: 0;
             border-radius: 4px 0 0 4px;
-        }
-
-        .page.grabbing {
-            transition: none;
         }
 
         .page.flipped:nth-child(odd) {
@@ -128,37 +147,9 @@
             transform: rotateY(-180deg);
         }
 
-        .page.flipped:nth-child(odd):before {
-            background: rgba(0, 0, 0, 0.2);
-        }
-
         .page.flipped:nth-child(even) {
             pointer-events: all;
             transform: rotateY(0deg);
-        }
-
-        .page.flipped:nth-child(even):hover {
-            transform: rotateY(15deg);
-        }
-
-        .page.flipped:nth-child(even):hover:before {
-            background: rgba(0, 0, 0, 0.03);
-        }
-
-        .page.flipped:nth-child(even):before {
-            background: rgba(0, 0, 0, 0);
-        }
-
-        .book .page:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0);
-            transition: background 0.7s;
-            z-index: 2;
         }
 
         .page-content {
@@ -166,44 +157,13 @@
             bottom: 10px;
             left: 10px;
             color: #fff;
-            font-size: 18px;
+            font-size: clamp(12px, 1.5vw, 16px);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        /* Buy Book Circle - Positioning outside the book */
-        .buy-book {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #ff6347;
-            color: white;
-            font-size: 18px;
-            border-radius: 50%;
-            padding: 20px 40px;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 10;
-        }
-
-        .buy-book.left {
-            left: 10%;
-        }
-
-        .buy-book.right {
-            right: 10%;
-        }
-
-        .buy-book.show {
-            opacity: 1;
-        }
-
-        /* Adjustments for button interaction */
         .top-buttons {
             position: fixed;
-            top: 25px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -216,20 +176,105 @@
         }
 
         .top-buttons button {
-            padding: 10px 20px;
+            padding: 8px 15px;
             background-color: #ff6347;
             color: white;
-            font-size: 16px;
+            font-size: clamp(12px, 1.5vw, 16px);
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-theme .top-buttons button {
+            background-color: #ff4500;
         }
 
         .top-buttons button:hover {
             background-color: #ff4500;
         }
 
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 20;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 60px;
+            padding: 8px 15px;
+            background-color: #ff6347;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 20;
+        }
+
+        .theme-toggle:hover {
+            background-color: #ff4500;
+        }
+
+        body.dark-theme .theme-toggle {
+            background-color: #ff4500;
+        }
+
+        @media (max-width: 768px) {
+            .book {
+                width: 80vw;
+                height: 60vw;
+                max-height: 500px;
+            }
+            .page {
+                width: 50%;
+                height: 100%;
+            }
+            .hamburger {
+                display: block;
+            }
+            .top-buttons {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 50px;
+                right: 10px;
+                background: rgba(0, 0, 0, 0.8);
+                padding: 10px;
+                border-radius: 5px;
+            }
+            .top-buttons.active {
+                display: flex;
+            }
+            .theme-toggle {
+                right: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book {
+                width: 90vw;
+                height: 70vw;
+                max-height: 400px;
+            }
+            .first-page-text {
+                padding: 8px 12px;
+            }
+            .theme-toggle {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -238,66 +283,74 @@
             <div class="page">
                 <div class="page-content">Page 1</div>
                 <div class="first-page-text">
-                    Welcome to this eBook! Inside, you’ll find a blend of insights, stories, or knowledge crafted to inspire and engage. Whether you're here to learn, reflect, or simply enjoy, this book invites you to dive in and explore new ideas. Happy reading!
+                    Welcome to this eBook! Enjoy insights and stories to inspire you. Happy reading!
                 </div>
                 <div class="author-name">Sushant Paiyani</div>
-                <!-- New Text at the top of the book page -->
-                <div class="ebook-collection-text">Sushant's e-book Collection</div>
+                <div class="ebook-collection-text">Sushant's eBook</div>
             </div>
             <div class="page">
                 <div class="page-content">Page 2</div>
                 <div class="author-name">Sushant Paiyani</div>
-                <!-- New text in the center of the second page -->
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 18px; font-family: 'Georgia', serif; text-align: center; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); background-color: rgba(0, 0, 0, 0.5); padding: 15px; border-radius: 10px;">
-                  Writer: Sushant Paiyani<br>
-                  Edition: 2081/2082<br>
-                  ©: Author<br>
-                  Design: Basudev Bhandari
-              </div>
-          </div>
-      </div>
-  </div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: clamp(12px, 1.5vw, 16px); font-family: 'Georgia', serif; text-align: center; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px;">
+                    Writer: Sushant Paiyani<br>
+                    Edition: 2081/2082<br>
+                    ©: Author<br>
+                    Design: Basudev
+                </div>
+            </div>
+            <div class="page">
+                <div class="page-content">Page 3</div>
+                <div class="author-name">Sushant Paiyani</div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: clamp(12px, 1.5vw, 16px); font-family: 'Georgia', serif; text-align: center; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px;">
+                    A new chapter begins here.<br>
+                    Explore more!<br>
+                    ©: Sushant Paiyani
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <!-- Buy Book Circle -->
-  <div class="buy-book left">Buy Book</div>
+    <button class="hamburger">☰</button>
+    <button class="theme-toggle">Change Theme</button>
+    <div class="top-buttons">
+        <a href="#"><button>Home</button></a>
+        <a href="login.html"><button>Login</button></a>
+        <a href="aboutus.html"><button>About Us</button></a>
+        <a href="ebooks.html"><button>eBooks</button></a>
+        <a href="contact.html"><button>Contact</button></a>
+    </div>
 
-  <!-- Top Buttons Section -->
-  <div class="top-buttons">
-    <a href="#"><button>Home</button></a>
-    <a href="login.html"><button>Login</button></a>
-    <a href="aboutus.html"><button>About Us</button></a>
-      <a href="ebooks.html"><button>eBooks</button></a>
-      <a href="contact.html"><button>Contact</button></a>
-  </div>
+    <script>
+        const pages = document.querySelectorAll('.page');
+        const hamburger = document.querySelector('.hamburger');
+        const topButtons = document.querySelector('.top-buttons');
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
 
-  <script>
-      var pages = document.getElementsByClassName('page');
-      
-      for (var i = 0; i < pages.length; i++) {
-          var page = pages[i];
-          if (i % 2 === 0) {
-              page.style.zIndex = (pages.length - i);
-          }
-      }
+        pages.forEach((page, i) => {
+            if (i % 2 === 0) {
+                page.style.zIndex = pages.length - i;
+            }
+            page.pageNum = i + 1;
+            page.onclick = () => {
+                if (page.pageNum % 2 === 0) {
+                    page.classList.remove('flipped');
+                    page.previousElementSibling.classList.remove('flipped');
+                } else {
+                    page.classList.add('flipped');
+                    page.nextElementSibling.classList.add('flipped');
+                }
+            };
+        });
 
-      document.addEventListener('DOMContentLoaded', function() {
-          for (var i = 0; i < pages.length; i++) {
-              pages[i].pageNum = i + 1;
-              pages[i].onclick = function() {
-                  if (this.pageNum % 2 === 0) {
-                      this.classList.remove('flipped');
-                      this.previousElementSibling.classList.remove('flipped');
-                      document.querySelector('.buy-book').classList.remove('right');
-                      document.querySelector('.buy-book').classList.add('left');
-                  } else {
-                      this.classList.add('flipped');
-                      this.nextElementSibling.classList.add('flipped');
-                      document.querySelector('.buy-book').classList.remove('left');
-                      document.querySelector('.buy-book').classList.add('right');
-                  }
-              }
-          }
-      });
-  </script>
+        hamburger.addEventListener('click', () => {
+            topButtons.classList.toggle('active');
+        });
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            themeToggle.textContent = body.classList.contains('dark-theme') ? 'Light Theme' : 'Change Theme';
+        });
+    </script>
 </body>
 </html>
