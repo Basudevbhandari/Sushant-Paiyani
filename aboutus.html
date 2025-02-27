@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-gradient, linear-gradient(135deg, #6a11cb, #2575fc));
+      color: var(--text-color, #f4f4f4);
+      line-height: 1.6;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    /* Theme Change Button */
+    .theme-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #fff;
+      color: #34495e;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .theme-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Header Section */
+    header {
+      text-align: center;
+      margin: 60px 0;
+      color: var(--header-color, #fff);
+    }
+
+    header h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    header p {
+      font-size: 1.6rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    /* About Us Section */
+    .about-us {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .about-box {
+      width: 48%;
+      background: var(--box-bg-gradient, linear-gradient(145deg, #ffffff, #f0f0f0));
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 20px;
+    }
+
+    .about-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    .about-box img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .about-box h3 {
+      font-size: 2.2rem;
+      color: var(--box-header-color, #2c3e50);
+      padding: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .about-box p {
+      font-size: 1.2rem;
+      color: var(--box-text-color, #34495e);
+      padding: 0 20px 20px;
+      line-height: 1.8;
+    }
+
+    /* Our Values Section */
+    .values {
+      margin-top: 60px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .value-box {
+      width: 30%;
+      background: var(--box-bg-gradient, linear-gradient(145deg, #ffffff, #f0f0f0));
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: 1.3rem;
+      color: var(--box-text-color, #34495e);
+    }
+
+    .value-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    .value-box h3 {
+      font-size: 2.3rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .value-box p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    /* Timeline Section */
+    .timeline {
+      margin-top: 60px;
+      background-color: var(--box-bg-gradient, #fff);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline h2 {
+      text-align: center;
+      font-size: 2.8rem;
+      color: var(--box-header-color, #34495e);
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .timeline ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline ul li {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      font-size: 1.4rem;
+      color: var(--box-text-color, #34495e);
+    }
+
+    .timeline ul li::before {
+      content: '•';
+      color: #e67e22;
+      font-size: 2rem;
+      margin-right: 15px;
+    }
+
+    /* Team Members Section */
+    .team-members {
+      margin-top: 60px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .team-member-card {
+      width: 30%;
+      background: var(--box-bg-gradient, linear-gradient(145deg, #ffffff, #f0f0f0));
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: 1.1rem;
+      color: var(--box-text-color, #34495e);
+    }
+
+    .team-member-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-member-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    .team-member-card h4 {
+      font-size: 1.8rem;
+      color: var(--box-header-color, #2c3e50);
+      margin-bottom: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .team-member-card p {
+      color: var(--box-text-color, #7f8c8d);
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
+    .team-member-card span {
+      color: #e67e22;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      background-color: #2c3e50;
+      color: var(--footer-text-color, #fff);
+      padding: 30px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #e67e22;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-button" onclick="changeTheme()">Change Theme</button>
+  <div class="container">
+    <!-- Header Section -->
+     <!-- Header Section -->
+     <header>
+        <h1>About Us</h1>
+        <p>We are a creative team focused on delivering top-notch services and innovative solutions that make a difference.</p>
+      </header>
+  
+      <!-- Our Mission Section -->
+      <div class="about-us">
+        <div class="about-box">
+          <img src="image1.png" alt="Mission Image">
+          <h3>Our Mission</h3>
+          <p>Our mission is to build sustainable and innovative products that make life easier and better for our customers.</p>
+        </div>
+  
+        <div class="about-box">
+          <img src="image.png" alt="Vision Image">
+          <h3>Our Vision</h3>
+          <p>Our vision is to create a world where knowledge, creativity, and imagination flow freely through the pages of every book. We aim to build a platform that connects readers with diverse stories, ideas, and learning experiences, inspiring growth and sparking curiosity in every reader.</p>
+        </div>
+      </div>
+  
+      <!-- Our Values Section -->
+      <div class="values">
+        <div class="value-box">
+          <h3>Innovation</h3>
+          <p>We constantly innovate to stay ahead and deliver fresh ideas to our clients.</p>
+        </div>
+  
+        
+  
+        <div class="value-box">
+          <h3>Customer Focus</h3>
+          <p>We focus on our customers' needs, making sure their goals are our goals.</p>
+        </div>
+      </div>
+  
+      <!-- Timeline Section -->
+      <div class="timeline">
+        <h2>Our Journey</h2>
+        <ul>
+          <li><span>Started in 2024</span></li>
+          <li><span>Launched our first book </span></li>
+          <li><span>Expanded our team in 2025</span></li>
+          <li><span>Developed a e-book website </span></li>
+        </ul>
+      </div>
+  
+      <!-- Team Members Section -->
+      <div class="team-members">
+        <div class="team-member-card">
+          <img src="https://via.placeholder.com/300x200" alt="Team Member Photo">
+          <h4>Sushant Paiyani</h4>
+          <p>Sushant is a passionate writer who brings words to life with creativity and depth. His stories inspire, challenge, and engage readers, offering a fresh perspective on life and ideas.</p>
+          <span>Writer</span>
+        </div>
+  
+        <div class="team-member-card">
+          <img src="basudev.jpg" alt="Team Member Photo">
+          <h4>Basudev Bhandari</h4>
+          <p>Basudev is the brilliant mind behind this website, serving as its editor, programmer, and designer. With a keen eye for detail and a passion for technology, he seamlessly blends creativity and functionality to craft an exceptional online experience.</p>
+          <span>Designer</span>
+        </div>
+  
+  
+     
+    </div>
+  
+    <script>
+      const themes = [
+        {
+          '--bg-gradient': 'linear-gradient(135deg, #6a11cb, #2575fc)',
+          '--text-color': '#f4f4f4',
+          '--header-color': '#fff',
+          '--box-bg-gradient': 'linear-gradient(145deg, #ffffff, #f0f0f0)',
+          '--box-header-color': '#2c3e50',
+          '--box-text-color': '#34495e',
+          '--footer-text-color': '#fff'
+        },
+        {
+          '--bg-gradient': 'linear-gradient(135deg, #ff7e5f, #feb47b)',
+          '--text-color': '#333',
+          '--header-color': '#fff',
+          '--box-bg-gradient': 'linear-gradient(145deg, #ffffff, #f0f0f0)',
+          '--box-header-color': '#c94b4b',
+          '--box-text-color': '#333',
+          '--footer-text-color': '#fff'
+        },
+        {
+          '--bg-gradient': 'linear-gradient(135deg, #00c6ff, #0072ff)',
+          '--text-color': '#fff',
+          '--header-color': '#fff',
+          '--box-bg-gradient': 'linear-gradient(145deg, #ffffff, #f0f0f0)',
+          '--box-header-color': '#004d80',
+          '--box-text-color': '#004d80',
+          '--footer-text-color': '#fff'
+        }
+        // Add more themes as needed
+      ];
+  
+      let currentTheme = 0;
+  
+      function changeTheme() {
+        currentTheme = (currentTheme + 1) % themes.length;
+        const theme = themes[currentTheme];
+        for (const key in theme) {
+          document.documentElement.style.setProperty(key, theme[key]);
+        }
+      }
+    </script>
+  </body>
+  </html>
+  
