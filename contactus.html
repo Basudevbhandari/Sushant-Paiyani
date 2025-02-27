@@ -1,160 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Sushant Paiyani for inquiries, collaboration, or feedback. Reach out via the form below.">
+  <meta name="keywords" content="contact sushant paiyani, sushantpaiyani.com.np, writer, creative, collaboration">
+  <meta name="author" content="Sushant Paiyani">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta property="og:title" content="Contact - Sushant Paiyani">
+  <meta property="og:description" content="Get in touch with Sushant Paiyani for creative projects, writing inquiries, or collaboration opportunities.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sushantpaiyani.com.np/contact">
+  <meta property="og:image" content="https://sushantpaiyani.com.np/images/og-image.jpg">
+  <title>Contact - Sushant Paiyani</title>
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCqi2Di1GMRSXk_wQ1GF8BG46B36D74EW4",
+      authDomain: "basudev-universe.firebaseapp.com",
+      databaseURL: "https://basudev-universe-default-rtdb.firebaseio.com",
+      projectId: "basudev-universe",
+      storageBucket: "basudev-universe.firebasestorage.app",
+      messagingSenderId: "211358921963",
+      appId: "1:211358921963:web:6f17f25b48bb4949653aae",
+      measurementId: "G-MGEWM1HD00"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        try {
+          await addDoc(collection(db, "contacts"), {
+            name: name,
+            email: email,
+            message: message,
+            timestamp: serverTimestamp(),
+          });
+          alert('Message sent successfully!');
+          e.target.reset();
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Failed to send message. Please try again.');
         }
-        body {
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            animation: gradientBG 5s infinite alternate;
-        }
-        @keyframes gradientBG {
-            0% { background: linear-gradient(135deg, #ff7e5f, #feb47b); }
-            100% { background: linear-gradient(135deg, #00c6ff, #0072ff); }
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            width: 90%;
-            max-width: 800px;
-        }
-        .form-box, .get-in-touch {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 350px;
-            text-align: center;
-        }
-        .form-box h2, .get-in-touch h2 {
-            margin-bottom: 15px;
-            color: #333;
-            font-size: 24px;
-        }
-        .form-box input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-        .form-box input:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-            outline: none;
-        }
-        .form-box button {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s ease;
-        }
-        .form-box button:hover {
-            background: #0056b3;
-        }
-        .social-icons {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            width: 80%;
-            max-width: 250px;
-            text-decoration: none;
-            color: #333;
-            padding: 10px;
-            background: #ddd;
-            border-radius: 5px;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-        .social-icons a:hover {
-            background: #bbb;
-            transform: translateY(-3px);
-        }
-        .social-icons img {
-            width: 25px;
-            height: 25px;
-            margin-right: 10px;
-        }
-    </style>
+      });
+    });
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+      padding: 20px;
+    }
+
+    /* Particle Background */
+    #particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .contact-container {
+      background: rgba(20, 20, 40, 0.9);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .contact-container h1 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #00ffcc, #ff00cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
+    }
+
+    .contact-container form { width: 100%; }
+
+    .contact-container input,
+    .contact-container textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 1em;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-container input:focus,
+    .contact-container textarea:focus {
+      border-color: #00ffcc;
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    }
+
+    ::placeholder { color: rgba(255, 255, 255, 0.6); opacity: 1; }
+
+    .contact-container textarea { resize: vertical; min-height: 100px; max-height: 200px; }
+
+    .contact-container button {
+      background: linear-gradient(90deg, #00ffcc, #ff00cc);
+      border: none;
+      border-radius: 25px;
+      padding: 12px 30px;
+      color: #fff;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .contact-container button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+    }
+
+    /* Glowing Border */
+    .contact-container::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #00ffcc, #ff00cc, #00ffcc);
+      z-index: -1;
+      border-radius: 20px;
+      filter: blur(8px);
+      animation: glow 4s infinite;
+    }
+
+    @keyframes glow {
+      0% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+      100% { opacity: 0.4; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .contact-container { padding: 25px; max-width: 90%; }
+      .contact-container h1 { font-size: 2em; }
+      .contact-container input, .contact-container textarea { font-size: 0.95em; }
+      .contact-container button { font-size: 1em; padding: 10px 25px; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 15px; }
+      .contact-container { padding: 20px; }
+      .contact-container h1 { font-size: 1.8em; }
+      .contact-container input, .contact-container textarea { padding: 10px; font-size: 0.9em; }
+      .contact-container button { font-size: 0.95em; padding: 10px 20px; max-width: 180px; }
+    }
+  </style>
 </head>
 <body>
+  <!-- Particle Background -->
+  <canvas id="particles"></canvas>
+  <div class="contact-container">
+    <h1>Contact Sushant Paiyani</h1>
+    <form id="contactForm">
+      <input type="text" id="name" name="name" placeholder="Your Name" required aria-label="Name">
+      <input type="email" id="email" name="email" placeholder="Your Email" required aria-label="Email">
+      <textarea id="message" name="message" placeholder="Your Message" required aria-label="Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
 
-    <div class="container">
-        <!-- Contact Form -->
-        <div class="form-box">
-            <h2>Contact Form</h2>
-            <input type="text" id="name" placeholder="Your Name">
-            <input type="email" id="email" placeholder="Your Gmail">
-            <input type="password" id="password" placeholder="Your Password">
-            <button onclick="submitForm()">Submit</button>
-        </div>
+  <!-- Particle Animation Script -->
+  <script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-        <!-- Get in Touch Box -->
-        <div class="get-in-touch">
-            <h2>Get in Touch</h2>
-            <div class="social-icons">
-            </a>
-            <a href="mailto:your-email@gmail.com">
-                <img src="https://th.bing.com/th/id/OIP.0wjhvLpjGf_-r-1lqG3QAQHaHw?w=191&h=200&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Instagram"> Instagram
-            </a>
+    const particlesArray = [];
+    const numberOfParticles = 40;
 
-                <a href="your-facebook-url">
-                    <img src="https://cdn-icons-png.freepik.com/256/5968/5968764.png?uid=R114735637&ga=GA1.1.1463154086.1735895452&semt=ais_hybrid" alt="Facebook"> Facebook
-                </a>
-                <a href="mailto:your-email@gmail.com">
-                    <img src="data:image/png;base64,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" alt="Gmail"> Gmail
-                </a>
-                <a href="tel:+123456789">
-                    <img src="data:image/png;base64,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" alt="Phone"> Phone
-                </a>
-                <a href="your-login-page-url">
-                    <img src="data:image/png;base64,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" alt="Location"> Location
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function submitForm() {
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
-            
-            if (name === "" || email === "" || password === "") {
-                alert("Please fill in all fields.");
-            } else {
-                alert("Form Submitted Successfully!");
-            }
-        }
-    </script>
-
-</body>
-</html>
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 4 + 1;
+        this.speedX = Math.random() * 0.8 - 0.4;
+        this.speedY = Math.random() * 0.8 - 0.4;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.size > 0.2) this.size -= 0.015;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(0, 255, 255, 0.7)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
