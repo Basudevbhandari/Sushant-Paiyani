@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मायाको गजल - E-Book</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Devanagari', 'Georgia', serif;
+            min-height: 100vh;
+            background: #2e1a47; /* Mystic purple base */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4b1e2f 0%, #2e1a47 50%, #5e2e47 100%);
+            background-size: 200% 200%;
+            animation: gradientFlow 15s ease infinite;
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><path d="M10 90 Q50 10 90 90" fill="none" stroke="%23d4a5a5" stroke-width="1.5" stroke-dasharray="5,5"/></svg>'),
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.25"><path d="M50 20 Q70 50 50 80 Q30 50 50 20" fill="%23d4a5a5" opacity="0.3"/></svg>'),
+                        radial-gradient(circle at 50% 50%, rgba(212, 165, 165, 0.2) 0%, transparent 70%);
+            background-repeat: repeat;
+            animation: drift 20s infinite linear;
+            z-index: -1;
+        }
+
+        .ebook-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 245, 238, 0.95); /* Seashell */
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(75, 30, 47, 0.3), 0 0 20px rgba(212, 165, 165, 0.2);
+            padding: 40px;
+            border: 3px double #d4a5a5; /* Rose double border */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ebook-title {
+            text-align: center;
+            color: #ffffff;
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-shadow: 2px 2px 4px rgba(46, 26, 71, 0.5), 0 0 10px rgba(212, 165, 165, 0.5);
+            background: linear-gradient(90deg, #d4a5a5, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .ebook-title::before,
+        .ebook-title::after {
+            content: '✿';
+            position: absolute;
+            color: #d4a5a5;
+            font-size: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .ebook-title::before {
+            left: -30px;
+        }
+
+        .ebook-title::after {
+            right: -30px;
+        }
+
+        .page {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding: 20px;
+            background: #fff5ee; /* Seashell */
+            border-radius: 10px;
+            box-shadow: inset 0 2px 10px rgba(75, 30, 47, 0.1);
+            margin-bottom: 20px;
+            border: 1px solid #d4a5a5;
+        }
+
+        .poem {
+            color: #4b1e2f; /* Deep wine text */
+            font-size: 1.1rem;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .poem::before {
+            content: '❧';
+            position: absolute;
+            left: 0;
+            color: #d4a5a5;
+            font-size: 1rem;
+        }
+
+        .poem-number {
+            font-weight: bold;
+            color: #b5707e; /* Deeper rose */
+            margin-bottom: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .ebook-container {
+                padding: 20px;
+            }
+
+            .page {
+                padding: 15px;
+            }
+
+            .ebook-title {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ebook-container {
+                padding: 15px;
+            }
+
+            .page {
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .poem {
+                font-size: 1rem;
+            }
+
+            .ebook-title {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Hover Effects */
+        @media (hover: hover) {
+            .ebook-container:hover {
+                transform: scale(1.02);
+                box-shadow: 0 15px 50px rgba(75, 30, 47, 0.4), 0 0 25px rgba(212, 165, 165, 0.3);
+            }
+
+            .page:hover {
+                border-color: #b5707e;
+            }
+        }
+
+        /* Animations */
+        @keyframes gradientFlow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        @keyframes drift {
+            0% { background-position: 0 0; }
+            100% { background-position: 120px 120px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ebook-container">
+        <h1 class="ebook-title">मायाको गजल</h1>
+        <!-- Page 1 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">1</div>
+                तिम्रो र मेरो जात मिलेन<br>
+                हामी दुई बीच हात मिलेन<br>
+                तिमीले अरु नै रोजेपछि<br>
+                हाम्रो अब जीवन साथ मिलेन
+            </div>
+            <div class="poem">
+                <div class="poem-number">2</div>
+                चाँदी समाउन डराउनेले हिरा पाएपछि<br>
+                दुख भूल्दो रहेछन् सुख पाएपछि<br>
+                तिमीलाई कहिल्यै भूल्न सकेंन भने पनि<br>
+                छाडी जाने रहेछन् अरु पाएपछि
+            </div>
+        </div>
+        <!-- Page 2 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">3</div>
+                एकले छोड्यौ भने त सकिन्छु भन्थे पनि<br>
+                आँखा फुटे पनि तिमीलाई त चिन्छु भन्थे पनि<br>
+                समयले आफ्नो पराई यसरी बनाउँदो रहेछ<br>
+                कि हालखबर सोध्न छोडे ज्यान दिन्छु भन्थे पनि
+            </div>
+            <div class="poem">
+                <div class="poem-number">4</div>
+                चल्दैछ जीवन चलि रहनेछ<br>
+                रात ढले साँझ रोकिने छैन<br>
+                जहाँ भए पनि तिमी खुशी रहनु सानु<br>
+                प्राण झैं तिम्रो याद एकदिन जलि जानेछ
+            </div>
+        </div>
+        <!-- Page 3 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">5</div>
+                कहिलेकाहीं भेट्न आउनु कान्छी साँझमा<br>
+                तिमी बाहेक कोही छैन यो मुटु माझमा<br>
+                भनि हाल्यो अब<br>
+                परि बस्छु कान्छी माग्न आगुन माथिमा
+            </div>
+            <div class="poem">
+                <div class="poem-number">6</div>
+                हाय : तिम्रो आँखाको नानीमा आफ्नो तस्वीर देख्न पाए<br>
+                हाय : तिम्रो मनको मुटुमा आफ्नो तस्वीर जोड्न पाए<br>
+                एउटा मिठो याद बन्थ्यों होला<br>
+                हाय : तिम्रो साथको यादमा आफ्नो गजल लेख्न पाए
+            </div>
+        </div>
+        <!-- Page 4 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">7</div>
+                काली छैनन खत्का गोरी छे<br>
+                सानी भए पनि जोरी खोजि छे<br>
+                मुस्क मुस्क हाँस्न गर्छे<br>
+                मुटु भित्र हर्दा त्यो गोरी छे
+            </div>
+            <div class="poem">
+                <div class="poem-number">8</div>
+                माया त थोरै छ बताउन नसकेर हो<br>
+                याद त तिम्रै आउँछ देखाउन नसकेर हो<br>
+                सम्झन त तिमीले पनि सम्झाउली नि कुनै दिन<br>
+                मेरो त सासमा पनि तिमी छौ जताउन नसकेर हो
+            </div>
+        </div>
+        <!-- Page 5 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">9</div>
+                एक नजर देखेको भरमा यस्तो पर्छ रहेछ<br>
+                नजरवाली मान्छेको माया मुटुमा बस्दो रहेछ<br>
+                मुटुभरि माया लुकाई देखाउन गाह्रो पनि<br>
+                याद कदापि छुट्न पर्‍थ्यो भने परदेशबाट अरुको बर्छ रहेछ
+            </div>
+            <div class="poem">
+                <div class="poem-number">10</div>
+                तिमीले उनलाई सम्झिएर हो<br>
+                घाम हुँदा जुनलाई सम्झिएर हो<br>
+                म त तिम्रा यादहरूमा स्मृति बिलिन बनाइरहेछु<br>
+                मैले तिमीलाई सम्झिँदा तिमीले आफैंलाई सम्झिएर हो
+            </div>
+        </div>
+        <!-- Page 6 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">11</div>
+                जसलाई देखेपछि अरु हटेको छैन<br>
+                टाढा भए पनि माया पटेको छैन<br>
+                आफ्नो कुरा छोड यहाँ<br>
+                मैले तिमीलाई देखेपछि जुनलाई देखेको छैन
+            </div>
+            <div class="poem">
+                <div class="poem-number">12</div>
+                किन किन बोलीले नि मन सताएको छ<br>
+                मायाले अबेल साथमा धोका खताएको छ<br>
+                तिमी बोलीमा बिष बोकेर बसिरहन्छौ खाएर<br>
+                के हो कुरा त तिम्रो नजरले बताएको छ
+            </div>
+        </div>
+        <!-- Page 7 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">13</div>
+                धोका होइन मायाको सास बलेको छ<br>
+                मन रिसाउँदा पनि छोरी बोलाएको छ<br>
+                बिषको घस त आउँदैन मलाई<br>
+                तर तिम्रो यादले मेरो मन जलाएको छ
+            </div>
+            <div class="poem">
+                <div class="poem-number">14</div>
+                दुई आत्मा एक प्राणी हुने भए<br>
+                माया मोह धोका धरानी हुने भए<br>
+                तिमी मात्र तिमीभित्रको मनमा अल्छिरहेछौ<br>
+                म त तिम्रो पखेटामा जलेर खरानी हुने भए
+            </div>
+        </div>
+        <!-- Page 8 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">15</div>
+                मलाई छोडी अरूसँग जाने तैं<br>
+                नभनी मन तोडी जाने तैं<br>
+                बोलाउँदैन म अब<br>
+                सिधा बाटो मोडी जाने तैं
+            </div>
+            <div class="poem">
+                <div class="poem-number">16</div>
+                जसरी कुरा गर्थ्यौ तिमीले<br>
+                माया गर्छु भन्थ्यौ तिमीले<br>
+                तिम्रा ती मिठा जीवन साथ तयार थिए<br>
+                मुटुमा छुन्डा राख्न बनायी तिमीले
+            </div>
+        </div>
+        <!-- Page 9 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">17</div>
+                भाग्यले तान्छ तिमीतिर जाऊ नभन<br>
+                ओठ खोली मेरो खातिर नभन<br>
+                तिम्रै तागि जोबन सामी बाँचिरहेछु<br>
+                चाहिएको जति माया दिन्छु लिऊ नभन
+            </div>
+            <div class="poem">
+                <div class="poem-number">18</div>
+                धनी त छैन म तर ऐश्वर्य बाँकी छ<br>
+                जानी त छैन म तर ईमान बाँकी छ<br>
+                छोडेर जाऊ जति गए पनि<br>
+                चल्छ जीवन कमाउन सुरुवात बाँकी छ
+            </div>
+        </div>
+        <!-- Page 10 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">19</div>
+                त्यो हाँसोमा जाइ छ तिमीतिर म हेर्छु कसरी<br>
+                आशा तान्छ मेरो जगतमा तिमीतिर बेठ कसरी<br>
+                यो हेराई हेर्दै बसेको हाम्रो माया प्रेम<br>
+                हातमा फूल लिएर प्रपोज तिमीतिर गरुँ कसरी
+            </div>
+            <div class="poem">
+                <div class="poem-number">20</div>
+                मुस्कानमा जाइ छ उनको मुस्कुराइरहन्छिन्<br>
+                हाय! मेरो दिललाई घायल बनाइरहन्छिन्<br>
+                कानमा झुम्का अनि हातमा औंठी लगाएकी<br>
+                तान्छ उनले पनि मलाई हल्का मन पराइरहन्छिन्
+            </div>
+        </div>
+        <!-- Page 11 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">21</div>
+                साथ तिम्रै हुनेछ गाह्रो भए पनि<br>
+                परदेश तिम्रै हुनेछ ताम्रो भए पनि<br>
+                बिछोडको कुरा नगर<br>
+                याद तिम्रै हुनेछ टाढा भए पनि
+            </div>
+            <div class="poem">
+                <div class="poem-number">22</div>
+                जसरी कुरा गर्थ्यौ तिमीले<br>
+                माया गर्छु भन्थ्यौ तिमीले<br>
+                तिम्रो तागि जीवन साथ तयार थिए<br>
+                मुटुमा दुख राख्न बनायौ तिमीले
+            </div>
+        </div>
+        <!-- Page 12 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">23</div>
+                याद तिमी साथ तिमी मुटुको तिमी<br>
+                मेरो हात तिमी मेरो बर्बाद तिमी<br>
+                तिमी तिमी तिमी नि<br>
+                मेरो बात तिमी मेरो दिनरात तिमी
+            </div>
+            <div class="poem">
+                <div class="poem-number">24</div>
+                उनलाई देखेर हेरिरहेथें<br>
+                उनको सपना हेरिरहेथें<br>
+                उनलाई थाहा थिएन केही तर<br>
+                उनीतिर औंखा मेरो दुताइरहेथें
+            </div>
+        </div>
+        <!-- Page 13 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">25</div>
+                उनी जुन अझै राम्रो रूपकी खानी थिइन्<br>
+                उनी आठ खोल्न हर्न जान्न थिइन्<br>
+                म उनको मायामा पागल<br>
+                अनि राधा पार्वतीभन्दा पनि राम्री थिइन्
+            </div>
+            <div class="poem">
+                <div class="poem-number">26</div>
+                मैले साथ दिन्छु तिमीलाई तिमीले दिन्छौ कलाई<br>
+                मैले माया गर्छु तिमीलाई तिमीले गर्छौ कलाई<br>
+                साथ दिन्छु भन्ने भएको थियो कुरा<br>
+                मैले जीवन मान्छु तिमीलाई तिमीले मान्छेउ कलाई
+            </div>
+        </div>
+        <!-- Page 14 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">27</div>
+                केही साथले कसैलाई गुमाएर लेखिँदा रहेछन्<br>
+                केही साथले कसैले रूपाएर लेखिँदा रहेछन्<br>
+                लेख्न नसकिरहँदा अरुको साथले<br>
+                आफ्नो जीवन सम्झेर रुँदा रहेछन्
+            </div>
+            <div class="poem">
+                <div class="poem-number">28</div>
+                साथ छोड्नेलाई हात दिए<br>
+                मुख मोड्नेलाई साथ दिए<br>
+                अब लाग्छ पछुतो<br>
+                हाँसेर तोड्नेलाई मन दिए
+            </div>
+        </div>
+        <!-- Page 15 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">29</div>
+                सपना बेगर जीवन सवानुभव रहेछ<br>
+                आए जहाँ घर जोगाउनुपर्ने रहेछ<br>
+                साथ नहुँदा कोही आफ्नो<br>
+                एकान्तमा बसेर सिरानी भिजाउनुपर्ने रहेछ
+            </div>
+            <div class="poem">
+                <div class="poem-number">30</div>
+                फाइदा उठाउने यहाँ ऐरे भोटिँदा रहेछन्<br>
+                मरेपछि हँुडी बेगरे यहाँ ऐरे भोटिँदा रहेछन्<br>
+                कोही बन्थे आफ्ना तर<br>
+                काम पर्दा साथ छोड्ने यहाँ ऐरे भोटिँदा रहेछन्
+            </div>
+        </div>
+        <!-- Page 16 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">31</div>
+                तिम्रो आँखामा नजर जुटाउन सकिन म<br>
+                तिमी बिना जीवन बिताउन सकिन म<br>
+                तिम्रो नै माया लाग्छ मलाई ऐरे<br>
+                तर तिमीलाई मन पराउँछु भन्न सकिन म
+            </div>
+            <div class="poem">
+                <div class="poem-number">32</div>
+                जीवन यस्तो मोड रहेछ<br>
+                पाउने हरपल चोट रहेछ<br>
+                लाग्छ तिम्रो मायामा डुबी रहुँ<br>
+                माया नै यस्तो तोड रहेछ
+            </div>
+        </div>
+        <!-- Page 17 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">33</div>
+                उनको मुहार गुलाफको फूल जस्तो<br>
+                मेट्टिँदा संतोदा जोगाउने झूल जस्तो<br>
+                उनको आँखामा हेर्दा भूल्छु सबै<br>
+                गहिरो चोट पनि लाग्छ कहीँ भूल जस्तो
+            </div>
+            <div class="poem">
+                <div class="poem-number">34</div>
+                सपनीमा सताउँदा तिमीले<br>
+                विपनीमा तर्साउँदा तिमीले<br>
+                लाग्छ माया बढे जस्तो<br>
+                रिसाएर कराउँदा तिमीले
+            </div>
+        </div>
+        <!-- Page 18 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">35</div>
+                सलल बेगमा बग्ने बादल तिमी<br>
+                मलाई पागल बनाउने पागल तिमी<br>
+                तिम्रो नै हुन्छ गुणगान ममा<br>
+                जुनभन्दा पनि राम्री मायाको गजल तिमी
+            </div>
+            <div class="poem">
+                <div class="poem-number">36</div>
+                करोडौंको भीडमा एकलाई देखें<br>
+                देखे बित्तिकै उनको नाम मनमा लेखें<br>
+                उनको मुहारभित्र बनेको हुन्छ मनमा<br>
+                उनको सम्झनामा एउटा गजल लेखें
+            </div>
+        </div>
+        <!-- Page 19 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">37</div>
+                कहिल्यै नबोली संग बोले आज<br>
+                उनको कुरामा भुले आज<br>
+                लाग्छ उनको कुरा गरुँ सधैं<br>
+                मैले मन पराएको कुरा भने आज
+            </div>
+            <div class="poem">
+                <div class="poem-number">38</div>
+                किन तिम्रो अगाडि बोल्न सक्तिन<br>
+                दुनिया साँची माया गर्छु भन्न सक्तिन<br>
+                जहिल्यै पनि तिम्रो मुहार हेरिरहँदा जस्तो लाग्छ<br>
+                मलाई अब तिमी बिना बाँच्न सक्तिन
+            </div>
+        </div>
+        <!-- Page 20 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">39</div>
+                बरु घामले गीत बिस्तार्न सक्ता<br>
+                बरु चन्द्रले गुण बिस्तार्न सक्ता<br>
+                तिम्रो माया रहिरहन्छ मेरो मुटुमा<br>
+                बरु पृथ्वीले पनि बिस्तार्न सक्ता
+            </div>
+            <div class="poem">
+                <div class="poem-number">40</div>
+                जति जल समुद्रमा पानी सकिन्छ<br>
+                जति हावामा अक्सिजन सकिन्छ<br>
+                त्यति बेला माया गर्छु तिमीलाई<br>
+                जति बेला मेरो प्राण सकिन्छ
+            </div>
+        </div>
+        <!-- Page 21 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">41</div>
+                पिउनु शिपन मलाई पिलायो तिम्रो यादले<br>
+                जिउनु शिपन मलाई सिकायो तिम्रो यादले<br>
+                कि जीवन के रहेछ भन्ने<br>
+                बुझ्नु शिपन मलाई बुझायो तिम्रो यादले
+            </div>
+            <div class="poem">
+                <div class="poem-number">42</div>
+                बुझ्नेलाई माया फूल हुँदो रहेछ<br>
+                नबुझ्नेलाई माया भूल हुँदो रहेछ<br>
+                माया नपाउने मानिस<br>
+                सपनामा माया सम्झेर रुँदो रहेछ
+            </div>
+        </div>
+        <!-- Page 22 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">43</div>
+                मुटु बुझ्न देखाउन भने ज्यानको माया लाग्छ<br>
+                तिमी संग बाँकी जीवन जिउन मन लाग्छ<br>
+                तिमी बिना जिन्दगी मरुभूमिको फूल झैं<br>
+                तिम्रै लागि साँचो जीवन जिउन मन लाग्छ
+            </div>
+            <div class="poem">
+                <div class="poem-number">44</div>
+                हुरिलाले छेकेर घाम रोकिन सक्तैन<br>
+                परेलाले रोकेर आँसु रोकिन सक्तैन<br>
+                उनलाई अरुले मन परे पनि<br>
+                छोडेर जान्छु सम्झेर भूल्न सक्तैन
+            </div>
+        </div>
+        <!-- Page 23 -->
+        <div class="page">
+           <div class="poem">
+                <div class="poem-number">45</div>
+                ए ऐले पनि केही शब्द राखे थिए<br>
+                गाडिए छ दिलमा नाम करोडको मेट्न थिए<br>
+                लम्कि रहन्छन् पैतला उनका यादहरू तिर<br>
+                तिमीले आफ्ना खुशी दाँत याद राखे थिए
+            </div>
+            <div class="poem">
+                <div class="poem-number">46</div>
+                हुरिलाले छेकेर घाम रोकिन सक्तैन<br>
+                इरेजरले मेट्न नयाँ मेटिन सक्तैन<br>
+                मेटिदिन्थें माया बरु एसिडले खसाएर<br>
+                मुटु नमेटिएल माया मेटिन सक्तैन
+            </div>
+        </div>
+        <!-- Page 24 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">47</div>
+                टोलाउँदै बसिरहेछु तिमीलाई सम्झेर<br>
+                पाउने भए बसिरहन्थें तिमीलाई हेरर<br>
+                किन किन तिमी बिना जीवन खल्लो खल्लो<br>
+                हाँस्नु न रुनु भए लयो मन तिमीले चोरेर
+            </div>
+            <div class="poem">
+                <div class="poem-number">48</div>
+                कति सक्छौ तिमी तिमीतिर भनुँ कसरी<br>
+                तिमी बिना जीवन बर्बाद मेरो यस्तो<br>
+                तिमीतिर नदेखी म बस्न सक्दिन<br>
+                किन तिमी बिना अब म बाँच्न कसरी
+            </div>
+        </div>
+        <!-- Page 25 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">49</div>
+                उनलाई देखे पनि मैले देख्न नपरोस्<br>
+                उनले बोले पनि मैले बोल्न नपरोस्<br>
+                जस्तो अवस्था आए पनि जीवनमा<br>
+                उनले हिँडेको बाटो हिँड्न नपरोस्
+            </div>
+            <div class="poem">
+                <div class="poem-number">50</div>
+                भोक लागेपछि खाना खानु नै पर्छ<br>
+                मर्न परे पनि बिष खानु नै पर्छ<br>
+                के गर्नु यस्तै रहेछ जीवनको चलनचल्ती<br>
+                लभ परेपछि चुम्नु नै पर्छ
+            </div>
+        </div>
+        <!-- Page 26 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">51</div>
+                बिहान उठ्दा मर्निँदैन भन्नु नै पर्छ<br>
+                साँझ पनि इभनिँदैन भन्नु नै पर्छ<br>
+                एक दिन बिहान मैले मेसेज नगर्दा<br>
+                कुरा नभएपछि साँचो ब्रेकअप भन्नु नै पर्छ
+            </div>
+            <div class="poem">
+                <div class="poem-number">52</div>
+                छाडि जाने निस्पुरीको माया देखियो<br>
+                बेमौसमी सरी जस्तो घाम छाया देखियो<br>
+                केही अरु तिमी बाहेक अरु भएको<br>
+                हेर्दाहेर्दै अनिश्चित दायराहरू देखियो
+            </div>
+        </div>
+        <!-- Page 27 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">53</div>
+                तिमी बिना यो मन सुकेको फूल जस्तो छ<br>
+                हरेक रात सपना देख्छु तिमीसँगको डेट जस्तो छ<br>
+                तर फेसबुकमा तिमीले 'Engaged' लेखेपछि<br>
+                यो मुटु पखेटा भाँचिएको चील जस्तो छ
+            </div>
+            <div class="poem">
+                <div class="poem-number">54</div>
+                फेसबुकमा "Single" लेखेर बसेको छु<br>
+                हर दिन "Love Quotes" पोस्ट गरिरहेछु<br>
+                प्रेम गर्न कति भेट्न गाह्रो भयो<br>
+                बरु TikTok खोली कि भनेर सोचिरहेछु
+            </div>
+        </div>
+        <!-- Page 28 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">55</div>
+                तिमी बिना जिन्दगी अधुरो लाग्छ<br>
+                तिम्रो यादले हरेक रात सुन्दर लाग्छ<br>
+                आँखा बन्द गरेर तिमीलाई सोच्छु<br>
+                अनि हर सपना तिमी नै भएको लाग्छ
+            </div>
+            <div class="poem">
+                <div class="poem-number">56</div>
+                मायामा परें कि तिम्रै जादु हो<br>
+                यो दिलको धड्कन तिम्रै बार्ड हो<br>
+                तिमी नजिक हुँदा संसार सुन्दर लाग्छ<br>
+                तिमी टाढा हुँदा आँसुको घार्ड हो
+            </div>
+        </div>
+        <!-- Page 29 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">57</div>
+                मैले उनलाई हेरिरहेथें<br>
+                हरेको हरेपछि के गर्नु खाइँ त<br>
+                आँखाले मलाई नदेखेपछि<br>
+                दिनदिन उनका झट्का आउँदा पानी के गर्नु खाइँ त
+            </div>
+            <div class="poem">
+                <div class="poem-number">58</div>
+                डर लाग्छ तैं हुदैन भनेको सम्बन्धको<br>
+                भर लाग्छ तैं हुदैन भनेको मायाको<br>
+                कति डराउँदै तैं मलाई सोध्छौ कुरा<br>
+                लाग्छ तैं मुखराउने अफ्सरको
+            </div>
+        </div>
+        <!-- Page 30 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">59</div>
+                तिमीले दिएको चोट अझै मुटुमा छ<br>
+                मुस्कानमा टुक्राउँदै तर पीडा आँखिमा छ<br>
+                तिमीले भूलिसक्यौ होला मेरो नाम पनि<br>
+                तर मेरो जिन्दगीमा तिम्रो निशानी अझै बाँकी छ
+            </div>
+            <div class="poem">
+                <div class="poem-number">60</div>
+                तिमी बिना पनि बाँच्न सक्नुपर्छ<br>
+                मुटुका सपनाहरू सम्हालेर बस्नुपर्छ<br>
+                माया गरें धोका पाएँ केही छैन अब<br>
+                तिमीलाई बिर्सन सक्नुपर्छ
+            </div>
+        </div>
+        <!-- Page 31 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">61</div>
+                हर रात सपना देख्छु तिमीलाई आफ्नो भनेर<br>
+                तर बिहान हुन्छ अनि सम्झन्छु तैं सम्भव छैन भनेर<br>
+                मेरो माया कति गहिरो छ थाहा छैन तिमीलाई<br>
+                तर यो मन तिमी बिना बाँच्न सक्तैन भनेर
+            </div>
+            <div class="poem">
+                <div class="poem-number">62</div>
+                चन्द्रमा बिना आकाश अधुरो छ<br>
+                फूल बिना बगैंचा अधुरो छ<br>
+                तिमी नै मेरो मुस्कान हो<br>
+                तिमी बिना मेरो संसार अधुरो छ
+            </div>
+        </div>
+        <!-- Page 32 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">63</div>
+                तिमीलाई माया गर्छु थाहा छैन तिमीलाई<br>
+                तिम्रै हरेक सासले बाँचेको छु थाहा छैन तिमीलाई<br>
+                हरेक दिन गजलले तिमीलाई खोज्छ<br>
+                तर मेरो अस्तित्व के छ थाहा छैन तिमीलाई
+            </div>
+            <div class="poem">
+                <div class="poem-number">64</div>
+                तिमीलाई देखेर मुटु धड्किन्छ<br>
+                तर म बोल्न सक्तिन आँठ थर्रिन्छ<br>
+                तिमी सायद कहिल्यै थाहा पाउँदैनौ<br>
+                यो मन तिम्रै नाममा जिन्दगीभर धड्किरहन्छ
+            </div>
+        </div>
+        <!-- Page 33 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">65</div>
+                तिम्रो दिल स्वर्गमा पनि रमायेन भने<br>
+                के गर्छु मरेर पनि मज्जा आएन भने<br>
+                जिउँदो छँदा त उनलाई नै सकिरहें बस्यो<br>
+                अर्थ भएन उनलाई बाडुल्कीले सतायेन भने
+            </div>
+            <div class="poem">
+                <div class="poem-number">66</div>
+                तिमीलाई देख्दा समय रोकिन्छ<br>
+                नजर जुधेपछि मुटु डुबिन्छ<br>
+                यो माया एकपल परेपछि<br>
+                जीवन नै तिमीमा अडिन्छ
+            </div>
+        </div>
+        <!-- Page 34 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">67</div>
+                उमेर चालिस कटि गयो<br>
+                माया आउला कति गयो<br>
+                एक न एक दिन होला मेरो पनि<br>
+                जवानी ढल्के ढलि गयो
+            </div>
+            <div class="poem">
+                <div class="poem-number">68</div>
+                अँउको छ मायामा यो जीवन<br>
+                बँउको छ मायामा यो जीवन<br>
+                साच्न नै पल्लाउन कुनै तामातले<br>
+                गँउको छ मायामा यो जीवन
+            </div>
+        </div>
+        <!-- Page 35 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">69</div>
+                तरकारी मिले नुन नमिली हुन्छ<br>
+                मानिस असल गुण नभई हुन्छ<br>
+                आफ्नो तक्दिर आफैं बिग्रने कति छन्<br>
+                राम्रो कुराले त उनलाई छुन्छ छुन्न
+            </div>
+            <div class="poem">
+                <div class="poem-number">70</div>
+                समुन्द्रको छाल सरि आउँछन् यादहरू<br>
+                नजरको गहिराइमा डुब्छन् सपनाहरू<br>
+                मायाको यो सौगात नबिर्सी हिंडे पनि<br>
+                सम्झनाले मनभरि लेख्छिन् कथाहरू
+            </div>
+        </div>
+        <!-- Page 36 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">71</div>
+                तिम्रो नाम लेख्दा कलम टुक्रिन्छ<br>
+                सम्झनाले मुटुभरि फूल फुरिन्छ<br>
+                मायाको बादल मनमा सरिरहन्छ<br>
+                तिमीलाई सोच्दा मन पनि रमाउँछ
+            </div>
+            <div class="poem">
+                <div class="poem-number">72</div>
+                माग तिमी जे दिन सक्छु म<br>
+                तिम्रो लागि त मरिदिन सक्छु म<br>
+                जवानी साथ तिम्रो लागि बाँचिरहेछु<br>
+                तिम्रो लागि जे पनि गरिदिन सक्छु म
+            </div>
+        </div>
+        <!-- Page 37 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">73</div>
+                झार पात परिरहन्छ<br>
+                माया लगाउने रहर<br>
+                हेर्न मात्र हो तिमीलाई कि<br>
+                फर्कन्छ तिम्रो पनि नजर
+            </div>
+            <div class="poem">
+                <div class="poem-number">74</div>
+                कहीँ कतै केही कुरा घात लागेका<br>
+                मलाई आज कसैको बात लागेको छ<br>
+                सबैको साथ दिन्छु सोचें तर<br>
+                आज न कोही मेरो साथ लागेको छ
+            </div>
+        </div>
+        <!-- Page 38 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">75</div>
+                उज्यालो पर्छ अन्धकार हुन्छ<br>
+                अन्धकारपछि उज्यालो हुन्छ<br>
+                मलाई घन्टे भन्दा रिन लो लागेको चोट छ<br>
+                त्यो झन् गहिरो हुन्छ
+            </div>
+            <div class="poem">
+                <div class="poem-number">76</div>
+                तिमी रागि मेरी भएर<br>
+                या रागि हो रूप भएर<br>
+                सोच्छु तिम्रो बारेमा म<br>
+                नसा निधारका सोझाएर
+            </div>
+        </div>
+        <!-- Page 39 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">77</div>
+                दुखीलाई दुख सुखीलाई चाइ पर्‍यो आउँदो रहेछ<br>
+                तेसै दुखीको भीडमा घुइँचो लाग्दो रहेछ<br>
+                पैसा नभएपछि गोजीमा<br>
+                आफ्नो आकाश पनि शरमाउँदो रहेछ
+            </div>
+            <div class="poem">
+                <div class="poem-number">78</div>
+                आकाशमा उड्ने सबै हवाइजहाज हुने भए<br>
+                पानीमा चल्ने सबै ढुङ्गा हुने भए<br>
+                देखेर तिम्रो नाम यो दिलमा<br>
+                लेखिदिन्थें तिमी मेरो हुने भए
+            </div>
+        </div>
+        <!-- Page 40 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">79</div>
+                माया छ मनमा कसैको<br>
+                छाया छ तनमा कसैको<br>
+                उसले बिर्से पनि मलाई<br>
+                याद छ जीवनमा कसैको
+            </div>
+            <div class="poem">
+                <div class="poem-number">80</div>
+                हाँसो ज्यानमारा छ अरु के भनुँ<br>
+                आँखा नसादु छ अरु के भनुँ<br>
+                उनै हुन् कि मेरी माया<br>
+                ज्यानै काट्छ छ अरु के भनुँ
+            </div>
+        </div>
+        <!-- Page 41 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">81</div>
+                हेरर माया बास्न माया हेरिरहन्थें तिमीलाई<br>
+                देखाउन मिल्छ माया भए छाती चिरेर देखाउँथें तिमीलाई<br>
+                के गर्नु टाढा भए जस्तो लाग्छ तिमीबाट<br>
+                लेखेर देखाउने माया भए लेखिदिन्थें तिमीलाई
+            </div>
+            <div class="poem">
+                <div class="poem-number">82</div>
+                चुरोटसँग धुँवाको जोडी कम लागेको छ<br>
+                तट बसेछ उनको छातीमा दम लागेको छ<br>
+                तिम्रो कसम छोड्दिन भन्थेउ सायद<br>
+                अचेत मलाई तिम्रो कसम लागेको छ
+            </div>
+        </div>
+        <!-- Page 42 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">83</div>
+                नदेखिने गरी छातीमा घात लागेको छ<br>
+                सेकेर सकेसम्म काट्न पनि आपत लागेको छ<br>
+                छोरी तिमी पनि उहाँ खेल नगर न महोदय<br>
+                बिर्सिय झैं गरी बिर्सन बढो बखत लागेको छ
+            </div>
+            <div class="poem">
+                <div class="poem-number">84</div>
+                माया उनलाई पनि थियो<br>
+                माया मलाई पनि थियो<br>
+                यहाँ यति फरक हुन्छ कि<br>
+                उनलाई अरुको थियो मलाई उनको
+            </div>
+        </div>
+        <!-- Page 43 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">85</div>
+                रिसको छैन तिमीलाई खुशी देख्न पाउँ तैं हो<br>
+                अब तिम्रो याद मेट्न पाउँ तैं हो<br>
+                छाडेर जान्छे पो बिर्सन्छ त पर्खि बस्छे त बिर्सदैन<br>
+                तर तिम्रो यादमा यो जीवन मेट्न पाउँ तैं हो
+            </div>
+            <div class="poem">
+                <div class="poem-number">86</div>
+                उनले छोडेर गइन मनु के नै छ र<br>
+                उनले माया मारेर गइन भनु के नै छ र<br>
+                म पनि उनलाई नै सम्झि रहन्छु खैर<br>
+                उनले तोडेर गइन भनु के नै छ र
+            </div>
+        </div>
+        <!-- Page 44 -->
+        <div class="page">
+            <div class="poem">
+                <div class="poem-number">87</div>
+                हात मैले जति पनि जित्नु पक्का हुनेछ<br>
+                मुटु मित्र मलाई दुख्न धक्का हुनेछ<br>
+                म साथ सुन्य भएर बसिरहनेछु<br>
+                तिम्रो प्रहारमा चौका छक्का हुनेछ
+            </div>
+            <div class="poem">
+                <div class="poem-number">88</div>
+                मेरो मुटुमा घाउ छ भूतपूर्व मायाको<br>
+                तेसैले त याद आउँछ भूतपूर्व मायाको<br>
+                पहिला त हर कदममा मेरो साथ हुन्थेउ<br>
+                अहिले हात कसले समाउँछ भूतपूर्व मायाको
+            </div>
+        </div>
+    </div>
+</body>
+</html>
