@@ -14,6 +14,7 @@
   <meta property="og:url" content="https://sushantpaiyani.com.np/contact">
   <meta property="og:image" content="https://sushantpaiyani.com.np/images/og-image.jpg">
   <title>Contact - Sushant Paiyani</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <!-- Firebase Scripts -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
@@ -71,7 +72,6 @@
       padding: 20px;
     }
 
-    /* Particle Background */
     #particles {
       position: absolute;
       top: 0;
@@ -155,7 +155,6 @@
       box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
     }
 
-    /* Glowing Border */
     .contact-container::before {
       content: '';
       position: absolute;
@@ -176,7 +175,41 @@
       100% { opacity: 0.4; }
     }
 
-    /* Responsive Design */
+    /* Social Buttons Styling */
+    .social-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .fb-btn {
+      background: #1877f2;
+      box-shadow: 0 0 15px rgba(24, 119, 242, 0.5);
+    }
+
+    .fb-btn:hover {
+      background: #166fe5;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(24, 119, 242, 0.7);
+    }
+
+    .gmail-btn {
+      background: #ea4335;
+      box-shadow: 0 0 15px rgba(234, 67, 53, 0.5);
+    }
+
+    .gmail-btn:hover {
+      background: #d93025;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(234, 67, 53, 0.7);
+    }
+
     @media (max-width: 768px) {
       .contact-container { padding: 25px; max-width: 90%; }
       .contact-container h1 { font-size: 2em; }
@@ -194,7 +227,6 @@
   </style>
 </head>
 <body>
-  <!-- Particle Background -->
   <canvas id="particles"></canvas>
   <div class="contact-container">
     <h1>Contact Sushant Paiyani</h1>
@@ -204,9 +236,26 @@
       <textarea id="message" name="message" placeholder="Your Message" required aria-label="Message"></textarea>
       <button type="submit">Send Message</button>
     </form>
+    <!-- Social Contact Buttons -->
+    <div class="social-contact" style="margin-top: 20px;">
+      <h3 style="font-size: 1.2em; margin-bottom: 15px;">Or Connect With Me:</h3>
+      <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <a href="https://www.facebook.com/share/1VWEk9YCmH/" target="_blank" rel="noopener noreferrer" 
+           style="text-decoration: none;">
+          <button class="social-btn fb-btn">
+            <i class="fab fa-facebook-f" style="margin-right: 8px;"></i>Facebook
+          </button>
+        </a>
+        <a href="mailto:sushantpaiyani052@gmail.com" 
+           style="text-decoration: none;">
+          <button class="social-btn gmail-btn">
+            <i class="far fa-envelope" style="margin-right: 8px;"></i>Gmail
+          </button>
+        </a>
+      </div>
+    </div>
   </div>
 
-  <!-- Particle Animation Script -->
   <script>
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
@@ -237,3 +286,9 @@
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
       }
+    }
+    // Note: The particle animation script appears to be incomplete in your original code
+    // You might want to add the rest of the particle animation logic here
+  </script>
+</body>
+</html>
