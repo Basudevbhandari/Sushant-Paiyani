@@ -1,295 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Privacy Policy for Sushant Paiyani's e-book website. Learn how we handle your data and protect your privacy.">
-  <meta name="keywords" content="privacy policy, sushant paiyani, e-book, sushantpaiyani.com.np, nepal">
-  <meta name="author" content="Sushant Paiyani">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Privacy Policy - Sushant Paiyani">
-  <meta property="og:description" content="Understand how Sushant Paiyani's e-book website collects, uses, and protects your personal information.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sushantpaiyani.com.np/privacy-policy">
-  <meta property="og:image" content="https://sushantpaiyani.com.np/images/og-image.jpg">
-  <title>Privacy Policy - Sushant Paiyani</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sushant's E-book Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&family=Dancing+Script:wght@700&family=Roboto+Mono:wght@500&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-      color: #e0e0e0;
-      line-height: 1.6;
-      padding: 20px;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+        :root {
+            --bg-color: #fefefe;
+            --text-color: #1a1a1a;
+            --primary-color: #ff6f61;
+            --secondary-color: #40c4ff;
+            --accent-color: #ffd740;
+            --shadow: 0 5px 25px rgba(0,0,0,0.15);
+            --font-family: 'Poppins', sans-serif;
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 40px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      position: relative;
-      animation: fadeIn 1s ease-in-out;
-    }
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.6s ease-in-out;
+            line-height: 1.8;
+            font-family: var(--font-family);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            min-height: 100vh; /* Ensures homepage fills viewport */
+        }
 
-    h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      text-align: center;
-      color: #00d4ff;
-      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-      margin-bottom: 30px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
+        /* Theme Variations */
+        body.coral {
+            --bg-color: #fff5f0;
+            --text-color: #2d1b1b;
+            --primary-color: #ff6f61;
+            --secondary-color: #ff9e80;
+            --accent-color: #ffd740;
+            --font-family: 'Playfair Display', serif;
+        }
 
-    h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      color: #ff6f61;
-      margin: 25px 0 15px;
-      position: relative;
-      padding-bottom: 8px;
-    }
+        body.emerald {
+            --bg-color: #e6f3e6;
+            --text-color: #1a2e1a;
+            --primary-color: #2ecc71;
+            --secondary-color: #55efc4;
+            --accent-color: #a8e6cf;
+            --font-family: 'Dancing Script', cursive;
+        }
 
-    h2::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(90deg, #ff6f61, transparent);
-      transition: width 0.3s ease;
-    }
+        body.amethyst {
+            --bg-color: #f0e6ff;
+            --text-color: #2a1b3d;
+            --primary-color: #9b59b6;
+            --secondary-color: #e8aaff;
+            --accent-color: #d7b9d5;
+            --font-family: 'Roboto Mono', monospace;
+        }
 
-    h2:hover::after {
-      width: 100px;
-    }
+        body.tangerine {
+            --bg-color: #fff3e6;
+            --text-color: #3d2c1a;
+            --primary-color: #ff9f43;
+            --secondary-color: #f4c430;
+            --accent-color: #ffeaa7;
+            --font-family: 'Oswald', sans-serif;
+        }
 
-    p, ul {
-      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-      color: #d3d3d3;
-      margin-bottom: 20px;
-    }
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
 
-    ul {
-      padding-left: 20px;
-      list-style-type: none;
-    }
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.4s ease;
+        }
 
-    ul li {
-      position: relative;
-      padding-left: 25px;
-      margin-bottom: 10px;
-    }
+        .logo .small {
+            font-family: var(--font-family);
+            font-size: 16px;
+            color: var(--text-color);
+            letter-spacing: 2px;
+            text-transform: lowercase;
+        }
 
-    ul li::before {
-      content: '➤';
-      position: absolute;
-      left: 0;
-      color: #00d4ff;
-      font-size: 1.2em;
-    }
+        .logo .big {
+            font-family: var(--font-family);
+            font-size: 36px;
+            color: var(--primary-color);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
 
-    a {
-      color: #00d4ff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+        .logo:hover {
+            transform: scale(1.05);
+        }
 
-    a:hover {
-      color: #ff6f61;
-      text-decoration: underline;
-    }
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+        }
 
-    .section {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 17px;
+            position: relative;
+            padding: 6px 12px;
+            transition: all 0.4s ease;
+        }
 
-    .section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
-    }
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: var(--secondary-color);
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
+        }
 
-    .last-updated {
-      text-align: center;
-      font-size: clamp(0.8rem, 2vw, 1rem);
-      color: #a0a0a0;
-      margin-top: 30px;
-    }
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
 
-    /* Scrollbar Customization */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
 
-    ::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.1);
-    }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 32px;
+            color: var(--primary-color);
+            transition: transform 0.5s ease;
+        }
 
-    ::-webkit-scrollbar-thumb {
-      background: #00d4ff;
-      border-radius: 5px;
-    }
+        .hamburger:hover {
+            transform: rotate(360deg);
+        }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: #ff6f61;
-    }
+        /* Theme Switcher */
+        .theme-switch {
+            width: 45px;
+            height: 45px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.6s ease;
+            box-shadow: var(--shadow);
+        }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        .theme-switch::before {
+            content: '🎨';
+            font-size: 24px;
+            transition: transform 0.6s ease;
+        }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .container {
-        padding: 25px;
-        margin: 0 10px;
-      }
+        .theme-switch:hover {
+            transform: rotate(45deg) scale(1.1);
+        }
 
-      h1 {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-      }
+        .theme-switch span {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
 
-      h2 {
-        font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-      }
+        .theme-switch:hover span {
+            opacity: 1;
+        }
 
-      .section {
-        padding: 15px;
-      }
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            background: linear-gradient(155deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
 
-    @media (max-width: 480px) {
-      body {
-        padding: 15px;
-      }
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+            animation: swirlBg 20s ease-in-out infinite;
+        }
 
-      .container {
-        padding: 20px;
-      }
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
 
-      h1 {
-        font-size: clamp(1.5rem, 3.5vw, 2rem);
-      }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
 
-      h2 {
-        font-size: clamp(1.2rem, 3vw, 1.5rem);
-      }
+        .hero-content h1 {
+            font-family: var(--font-family);
+            font-size: 76px;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 4px 4px 20px rgba(0,0,0,0.5);
+            animation: slideIn 1.3s ease-out;
+        }
 
-      p, ul {
-        font-size: clamp(0.85rem, 2vw, 1rem);
-      }
+        .hero-content p {
+            font-size: 26px;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: rgba(255,255,255,0.9);
+            animation: fadeInUp 1.6s ease 0.4s backwards;
+        }
 
-      .section {
-        padding: 10px;
-      }
-    }
-  </style>
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--accent-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 22px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            animation: bounceIn 2s ease 0.7s backwards;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            top: -10%;
+            left: -10%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from { transform: translateX(-150px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.6); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes swirlBg {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.05); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--bg-color);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 80px;
+                transition: left 0.6s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu a {
+                font-size: 28px;
+                margin: 30px 0;
+            }
+
+            .hero-content h1 {
+                font-size: 56px;
+            }
+
+            .hero-content p {
+                font-size: 22px;
+            }
+
+            .logo .small {
+                font-size: 14px;
+            }
+
+            .logo .big {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Privacy Policy</h1>
+<body class="coral">
+    <header>
+        <div class="logo">
+            <span class="small">sushant's</span>
+            <span class="big">E-book</span>
+        </div>
+        <nav>
+            <div class="hamburger">☰</div>
+            <div class="nav-menu">
+                <a href="#">Home</a>
+                <a href="aboutus.html">About</a>
+                <a href="ebook2.html">E-book</a>
+                <a href="blogs"><Blog class="html">Blogs</a>
+                <a href="contactus.html">Contact</a>
+                <a href="faq.html">Faq</a>
+                <a href="privacypolicy.html">Policy</a>
+                <a href="t&c.html">t&c</a>
 
-    <div class="section">
-      <h2>Introduction</h2>
-      <p>Welcome to <strong>sushantpaiyani.com.np</strong>, an e-book website operated by Sushant Paiyani, based in Nepal. This Privacy Policy outlines how we collect, use, disclose, and protect your personal information when you visit our website or interact with our services. Your privacy is important to us, and we are committed to safeguarding your data.</p>
-    </div>
 
-    <div class="section">
-      <h2>Information We Collect</h2>
-      <p>We may collect the following types of information:</p>
-      <ul>
-        <li><strong>Personal Information:</strong> Name and email address when you submit a contact form or sign up for newsletters.</li>
-        <li><strong>Usage Data:</strong> Information about how you use our website, such as IP address, browser type, pages visited, and time spent, collected via cookies and analytics tools.</li>
-        <li><strong>Payment Information:</strong> If applicable, payment details for e-book purchases, processed securely through third-party payment gateways.</li>
-      </ul>
-    </div>
 
-    <div class="section">
-      <h2>How We Use Your Information</h2>
-      <p>Your information is used to:</p>
-      <ul>
-        <li>Provide and improve our e-book services.</li>
-        <li>Respond to your inquiries or feedback sent via <a href="mailto:sushantpaiyani052@gmail.com">sushantpaiyani052@gmail.com</a>.</li>
-        <li>Process transactions and deliver purchased e-books.</li>
-        <li>Send promotional emails or updates (with your consent).</li>
-        <li>Analyze website usage to enhance user experience.</li>
-      </ul>
-    </div>
+            </div>
+        </nav>
+        <div class="theme-switch"><span></span></div>
+    </header>
 
-    <div class="section">
-      <h2>Sharing Your Information</h2>
-      <p>We do not sell or rent your personal information. We may share it with:</p>
-      <ul>
-        <li><strong>Service Providers:</strong> Third-party tools (e.g., payment processors, analytics) that assist in operating the website.</li>
-        <li><strong>Legal Authorities:</strong> If required by law or to protect our rights and users.</li>
-      </ul>
-    </div>
+    <section class="hero" id="home">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1>Pages Turn, Dreams Grow</h1>
+            <p>Explore. Read. Grow – Your Digital Library Awaits!" 📚🌍</p>
+            <a href="ebook2.html" class="cta-button">Read E-book</a>
+        </div>
+    </section>
 
-    <div class="section">
-      <h2>Cookies and Tracking</h2>
-      <p>We use cookies to enhance your browsing experience. These may include:</p>
-      <ul>
-        <li>Essential cookies for website functionality.</li>
-        <li>Analytics cookies to track usage patterns.</li>
-      </ul>
-      <p>You can manage cookie preferences through your browser settings.</p>
-    </div>
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
 
-    <div class="section">
-      <h2>Data Security</h2>
-      <p>We implement reasonable measures to protect your data, such as encryption and secure servers. However, no online transmission is completely secure, and we cannot guarantee absolute security.</p>
-    </div>
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
 
-    <div class="section">
-      <h2>Your Rights</h2>
-      <p>You have the right to:</p>
-      <ul>
-        <li>Access, update, or delete your personal information.</li>
-        <li>Opt out of promotional communications.</li>
-        <li>Contact us at <a href="mailto:sushantpaiyani052@gmail.com">sushantpaiyani052@gmail.com</a> to exercise these rights.</li>
-      </ul>
-    </div>
+        // Theme Switcher with Color Themes
+        const themeSwitch = document.querySelector('.theme-switch');
+        const body = document.body;
+        const themes = ['coral', 'emerald', 'amethyst', 'tangerine'];
+        let currentThemeIndex = 0;
 
-    <div class="section">
-      <h2>Third-Party Links</h2>
-      <p>Our website may contain links to external sites. We are not responsible for their privacy practices.</p>
-    </div>
+        function updateTheme() {
+            body.className = ''; // Clear all classes
+            body.classList.add(themes[currentThemeIndex]);
+            themeSwitch.style.background = getComputedStyle(document.body).getPropertyValue('--accent-color');
+        }
 
-    <div class="section">
-      <h2>Children’s Privacy</h2>
-      <p>Our services are not directed at individuals under 13. We do not knowingly collect data from children.</p>
-    </div>
+        themeSwitch.addEventListener('click', () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            updateTheme();
+        });
 
-    <div class="section">
-      <h2>Changes to This Policy</h2>
-      <p>We may update this Privacy Policy periodically. Changes will be posted here with the updated date below.</p>
-    </div>
+        // Initial theme setup
+        updateTheme();
 
-    <div class="section">
-      <h2>Contact Us</h2>
-      <p>If you have questions about this Privacy Policy, please reach out to:</p>
-      <p><strong>Email:</strong> <a href="mailto:sushantpaiyani052@gmail.com">sushantpaiyani052@gmail.com</a></p>
-      <p><strong>Location:</strong> Nepal</p>
-    </div>
+        // Particle Effect
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 25; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: absolute;
+                width: ${Math.random() * 6 + 2}px;
+                height: ${Math.random() * 6 + 2}px;
+                background: rgba(255,255,255,${Math.random() * 0.6 + 0.2});
+                border-radius: 50%;
+                top: ${Math.random() * 100}%;
+                left: ${Math.random() * 100}%;
+                animation: drift ${Math.random() * 6 + 4}s infinite ease-in-out;
+            `;
+            particlesContainer.appendChild(particle);
+        }
 
-    <p class="last-updated">Last Updated: February 27, 2025</p>
-  </div>
+        // Particle Animation
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(`
+            @keyframes drift {
+                0%, 100% { transform: translate(0, 0); }
+                25% { transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px); }
+                50% { transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px); }
+                75% { transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px); }
+            }
+        `, styleSheet.cssRules.length);
+    </script>
 </body>
 </html>
