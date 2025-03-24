@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-book</title>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <title>Sushant's E-book Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&family=Dancing+Script:wght@700&family=Roboto+Mono:wght@500&family=Oswald:wght@600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,434 +12,438 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-color: #fefefe;
+            --text-color: #1a1a1a;
+            --primary-color: #ff6f61;
+            --secondary-color: #40c4ff;
+            --accent-color: #ffd740;
+            --shadow: 0 5px 25px rgba(0,0,0,0.15);
+            --font-family: 'Poppins', sans-serif;
+        }
+
         body {
-            font-family: 'Lovers Quarrel', cursive;
-            background: url('https://t3.ftcdn.net/jpg/03/44/67/38/360_F_344673825_6fU6IORyipkYpfU1mg2vmxtHxDToUO6Q.jpg') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2em 1em;
-            line-height: 1.5em;
-            position: relative;
-            transition: background 0.5s ease;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.6s ease-in-out;
+            line-height: 1.8;
+            font-family: var(--font-family);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            min-height: 100vh; /* Ensures homepage fills viewport */
         }
 
-        body.dark-theme {
-            background: #1a1a1a;
+        /* Theme Variations */
+        body.coral {
+            --bg-color: #fff5f0;
+            --text-color: #2d1b1b;
+            --primary-color: #ff6f61;
+            --secondary-color: #ff9e80;
+            --accent-color: #ffd740;
+            --font-family: 'Playfair Display', serif;
         }
 
-        .book {
-            width: 60vw;
-            height: 44vw;
-            max-width: 800px;
-            max-height: 600px;
-            perspective: 1500px;
-            position: relative;
-            margin: 0 auto;
+        body.emerald {
+            --bg-color: #e6f3e6;
+            --text-color: #1a2e1a;
+            --primary-color: #2ecc71;
+            --secondary-color: #55efc4;
+            --accent-color: #a8e6cf;
+            --font-family: 'Dancing Script', cursive;
         }
 
-        .pages {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            border-radius: 4px;
+        body.amethyst {
+            --bg-color: #f0e6ff;
+            --text-color: #2a1b3d;
+            --primary-color: #9b59b6;
+            --secondary-color: #e8aaff;
+            --accent-color: #d7b9d5;
+            --font-family: 'Roboto Mono', monospace;
         }
 
-        .page {
-            width: 50%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            transform-origin: left center;
-            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            backface-visibility: hidden;
-            background-color: #f0f0f0;
-            cursor: pointer;
-            user-select: none;
-            background-image: url(download.jpg);
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        body.tangerine {
+            --bg-color: #fff3e6;
+            --text-color: #3d2c1a;
+            --primary-color: #ff9f43;
+            --secondary-color: #f4c430;
+            --accent-color: #ffeaa7;
+            --font-family: 'Oswald', sans-serif;
         }
 
-        body.dark-theme .page {
-            background-color: #333;
-            filter: brightness(0.9);
-        }
-
-        .first-page-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #333;
-            font-size: clamp(14px, 2vw, 20px);
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px 15px;
-            border-radius: 8px;
-            max-width: 85%;
-            text-align: center;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body.dark-theme .first-page-text {
-            color: #ddd;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        .author-name {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: clamp(14px, 1.8vw, 20px);
-            font-family: 'Cursive', sans-serif;
-            color: #ff6347;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            background-color: rgba(255, 255, 255, 0.6);
-            padding: 8px 10px;
-            border-radius: 6px;
-        }
-
-        body.dark-theme .author-name {
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .page:nth-child(odd) {
-            pointer-events: all;
-            right: 0;
-            transform: rotateY(0deg);
-            border-radius: 0 4px 4px 0;
-        }
-
-        .page:nth-child(even) {
-            pointer-events: none;
-            transform: rotateY(180deg);
-            transform-origin: right center;
-            left: 0;
-            border-radius: 4px 0 0 4px;
-        }
-
-        .page.flipped:nth-child(odd) {
-            pointer-events: none;
-            transform: rotateY(-180deg);
-        }
-
-        .page.flipped:nth-child(even) {
-            pointer-events: all;
-            transform: rotateY(0deg);
-        }
-
-        .page-content {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            color: #fff;
-            font-size: clamp(12px, 1.5vw, 16px);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .top-buttons {
+        /* Header */
+        header {
             position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 100%;
+            padding: 20px 5%;
             display: flex;
-            gap: 10px;
-            z-index: 10;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
         }
 
-        .top-buttons a {
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.4s ease;
+        }
+
+        .logo .small {
+            font-family: var(--font-family);
+            font-size: 16px;
+            color: var(--text-color);
+            letter-spacing: 2px;
+            text-transform: lowercase;
+        }
+
+        .logo .big {
+            font-family: var(--font-family);
+            font-size: 36px;
+            color: var(--primary-color);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-menu a {
             text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 17px;
+            position: relative;
+            padding: 6px 12px;
+            transition: all 0.4s ease;
         }
 
-        .top-buttons button {
-            padding: 8px 15px;
-            background-color: #ff6347;
-            color: white;
-            font-size: clamp(12px, 1.5vw, 16px);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: var(--secondary-color);
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
         }
 
-        body.dark-theme .top-buttons button {
-            background-color: #ff4500;
+        .nav-menu a:hover::before {
+            width: 100%;
         }
 
-        .top-buttons button:hover {
-            background-color: #ff4500;
+        .nav-menu a:hover {
+            color: var(--primary-color);
         }
 
+        /* Hamburger Menu */
         .hamburger {
             display: none;
-            font-size: 28px;
-            background: rgba(0, 0, 0, 0.7);
-            border: none;
-            color: #fff;
             cursor: pointer;
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            z-index: 20;
-            transition: transform 0.3s ease;
+            font-size: 32px;
+            color: var(--primary-color);
+            transition: transform 0.5s ease;
         }
 
         .hamburger:hover {
-            transform: scale(1.1);
+            transform: rotate(360deg);
         }
 
-        .theme-toggle {
-            position: fixed;
-            top: 15px;
-            right: 60px;
-            padding: 8px 15px;
-            background-color: #ff6347;
-            color: white;
-            font-size: 14px;
-            border: none;
-            border-radius: 5px;
+        /* Theme Switcher */
+        .theme-switch {
+            width: 45px;
+            height: 45px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            z-index: 20;
-            transition: background-color 0.3s ease;
+            position: relative;
+            transition: all 0.6s ease;
+            box-shadow: var(--shadow);
         }
 
-        .theme-toggle:hover {
-            background-color: #ff4500;
+        .theme-switch::before {
+            content: '🎨';
+            font-size: 24px;
+            transition: transform 0.6s ease;
         }
 
-        body.dark-theme .theme-toggle {
-            background-color: #ff4500;
+        .theme-switch:hover {
+            transform: rotate(45deg) scale(1.1);
         }
 
-        .menu-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        .theme-switch span {
+            position: absolute;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 15;
-            justify-content: center;
-            align-items: center;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.5), transparent);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
         }
 
-        .menu-overlay.active {
-            display: flex;
+        .theme-switch:hover span {
             opacity: 1;
         }
 
-        .page-list {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 400px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        body.dark-theme .page-list {
-            background: #2a2a2a;
-        }
-
-        .page-list h2 {
-            font-size: 24px;
-            color: #ff6347;
-            margin-bottom: 15px;
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            font-family: 'Georgia', serif;
+            padding: 0 5%;
+            background: linear-gradient(155deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
         }
 
-        .page-list ul {
-            list-style: none;
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+            animation: swirlBg 20s ease-in-out infinite;
         }
 
-        .page-list li {
-            margin: 10px 0;
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
-        .page-list a {
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            font-family: 'Roboto', sans-serif;
-            display: block;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
-        body.dark-theme .page-list a {
-            color: #ddd;
-        }
-
-        .page-list a:hover {
-            background-color: #ff6347;
+        .hero-content h1 {
+            font-family: var(--font-family);
+            font-size: 76px;
+            margin-bottom: 30px;
             color: white;
+            text-shadow: 4px 4px 20px rgba(0,0,0,0.5);
+            animation: slideIn 1.3s ease-out;
         }
 
+        .hero-content p {
+            font-size: 26px;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: rgba(255,255,255,0.9);
+            animation: fadeInUp 1.6s ease 0.4s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--accent-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 22px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            animation: bounceIn 2s ease 0.7s backwards;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            top: -10%;
+            left: -10%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from { transform: translateX(-150px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.6); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes swirlBg {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.05); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Mobile Menu */
         @media (max-width: 768px) {
-            .book {
-                width: 85vw;
-                height: 65vw;
-                max-height: 550px;
-            }
-            .page {
-                width: 50%;
-                height: 100%;
-            }
             .hamburger {
                 display: block;
             }
-            .top-buttons {
-                display: none;
-            }
-            .theme-toggle {
-                right: 60px;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .book {
-                width: 95vw;
-                height: 75vw;
-                max-height: 450px;
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--bg-color);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 80px;
+                transition: left 0.6s ease;
             }
-            .first-page-text {
-                padding: 8px 12px;
+
+            .nav-menu.active {
+                left: 0;
             }
-            .theme-toggle {
-                font-size: 12px;
-                padding: 6px 10px;
-                right: 50px;
+
+            .nav-menu a {
+                font-size: 28px;
+                margin: 30px 0;
             }
-            .hamburger {
-                font-size: 24px;
+
+            .hero-content h1 {
+                font-size: 56px;
             }
-            .page-list {
-                width: 90%;
+
+            .hero-content p {
+                font-size: 22px;
+            }
+
+            .logo .small {
+                font-size: 14px;
+            }
+
+            .logo .big {
+                font-size: 28px;
             }
         }
     </style>
 </head>
-<body>
-    <div class="book">
-        <div class="pages">
-            <div class="page">
-                <div class="page-content">Page 1</div>
-                <div class="first-page-text">
-                    Welcome to this eBook! Enjoy insights and stories to inspire you. Happy reading!
-                </div>
-                <div class="author-name">Sushant Paiyani</div>
-            </div>
-            <div class="page">
-                <div class="page-content">Page 2</div>
-                <div class="author-name">Sushant Paiyani</div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: clamp(12px, 1.5vw, 16px); font-family: 'Georgia', serif; text-align: center; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px;">
-                    Writer: Sushant Paiyani<br>
-                    Edition: 2081/2082<br>
-                    ©: Author<br>
-                    Design: Basudev
-                </div>
-            </div>
-            <div class="page">
-                <div class="page-content">Page 3</div>
-                <div class="author-name">Sushant Paiyani</div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: clamp(12px, 1.5vw, 16px); font-family: 'Georgia', serif; text-align: center; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px;">
-                    A new chapter begins here.<br>
-                    Explore more!<br>
-                    ©: Sushant Paiyani
-                </div>
-            </div>
+<body class="coral">
+    <header>
+        <div class="logo">
+            <span class="small">sushant's</span>
+            <span class="big">E-book</span>
         </div>
-    </div>
+        <nav>
+            <div class="hamburger">☰</div>
+            <div class="nav-menu">
+                <a href="#">Home</a>
+                <a href="aboutus.html">About Us</a>
+                <a href="ebook2.html">E-book</a>
+                <a href="blogs"><Blog class="html">Blogs</a>
+                <a href="contactus.html">Contact</a>
+        
 
-    <button class="hamburger">☰</button>
-    <button class="theme-toggle">Change Theme</button>
-    <div class="top-buttons">
-        <a href="#"><button>Home</button></a>
-                <a href="ebook2.html"><button>E-book</button></a>
+            </div>
+        </nav>
+        <div class="theme-switch"><span></span></div>
+    </header>
 
-        <a href="aboutus.html"><button>About Us</button></a>
-        <a href="privacypolicy.html"><button>Privacy Policy</button></a>
-        <a href="t&c.html"><button>Terms And Conditions</button></a>
-                <a href="faq.html"><button>FAQ</button></a>
-
-    </div>
-
-    <div class="menu-overlay">
-        <div class="page-list">
-            <h2>Menu</h2>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="ebook2.html">eBook</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="contactus.html">Contact</a></li>
-                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                                                <li><a href="t&c.html">Terms And Conditions</a></li>
-
-                                <li><a href="faq.html">FAQ</a></li>
-
-            </ul>
+    <section class="hero" id="home">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1>Pages Turn, Dreams Grow</h1>
+            <p>Explore. Read. Grow – Your Digital Library Awaits!" 📚🌍</p>
+            <a href="ebook2.html" class="cta-button">Read E-book</a>
         </div>
-    </div>
+    </section>
 
     <script>
-        const pages = document.querySelectorAll('.page');
+        // Hamburger Menu Toggle
         const hamburger = document.querySelector('.hamburger');
-        const topButtons = document.querySelector('.top-buttons');
-        const themeToggle = document.querySelector('.theme-toggle');
-        const body = document.body;
-        const menuOverlay = document.querySelector('.menu-overlay');
-
-        pages.forEach((page, i) => {
-            if (i % 2 === 0) {
-                page.style.zIndex = pages.length - i;
-            }
-            page.pageNum = i + 1;
-            page.onclick = () => {
-                if (page.pageNum % 2 === 0) {
-                    page.classList.remove('flipped');
-                    page.previousElementSibling.classList.remove('flipped');
-                } else {
-                    page.classList.add('flipped');
-                    page.nextElementSibling.classList.add('flipped');
-                }
-            };
-        });
+        const navMenu = document.querySelector('.nav-menu');
 
         hamburger.addEventListener('click', () => {
-            menuOverlay.classList.toggle('active');
-            hamburger.textContent = menuOverlay.classList.contains('active') ? '✕' : '☰';
+            navMenu.classList.toggle('active');
         });
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-theme');
-            themeToggle.textContent = body.classList.contains('dark-theme') ? 'Light Theme' : 'Change Theme';
+        // Theme Switcher with Color Themes
+        const themeSwitch = document.querySelector('.theme-switch');
+        const body = document.body;
+        const themes = ['coral', 'emerald', 'amethyst', 'tangerine'];
+        let currentThemeIndex = 0;
+
+        function updateTheme() {
+            body.className = ''; // Clear all classes
+            body.classList.add(themes[currentThemeIndex]);
+            themeSwitch.style.background = getComputedStyle(document.body).getPropertyValue('--accent-color');
+        }
+
+        themeSwitch.addEventListener('click', () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            updateTheme();
         });
 
-        // Close menu when clicking outside
-        menuOverlay.addEventListener('click', (e) => {
-            if (e.target === menuOverlay) {
-                menuOverlay.classList.remove('active');
-                hamburger.textContent = '☰';
+        // Initial theme setup
+        updateTheme();
+
+        // Particle Effect
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 25; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: absolute;
+                width: ${Math.random() * 6 + 2}px;
+                height: ${Math.random() * 6 + 2}px;
+                background: rgba(255,255,255,${Math.random() * 0.6 + 0.2});
+                border-radius: 50%;
+                top: ${Math.random() * 100}%;
+                left: ${Math.random() * 100}%;
+                animation: drift ${Math.random() * 6 + 4}s infinite ease-in-out;
+            `;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Particle Animation
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(`
+            @keyframes drift {
+                0%, 100% { transform: translate(0, 0); }
+                25% { transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px); }
+                50% { transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px); }
+                75% { transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px); }
             }
-        });
+        `, styleSheet.cssRules.length);
     </script>
 </body>
 </html>
